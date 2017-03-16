@@ -31,7 +31,7 @@ dependencies {
 uploadArchives {
     repositories {
         mavenDeployer {
-	    repository(url: maven_url_topobyte)
+            repository(url: maven_url_topobyte)
         }
     }
 }
