@@ -30,10 +30,10 @@ import de.topobyte.adt.graph.Graph;
 import de.topobyte.adt.graph.util.BreadthFirstEnumerationBuilder;
 
 /**
- * @author Sebastian Kuerten (sebastian.kuerten@fu-berlin.de)
- * 
  * @param <T>
  *            the type of elements constituting the nodes of the graph.
+ * 
+ * @author Sebastian Kuerten (sebastian.kuerten@fu-berlin.de)
  */
 public class ColoringBuilder<T>
 {
