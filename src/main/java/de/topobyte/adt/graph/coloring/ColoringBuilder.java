@@ -37,6 +37,7 @@ import de.topobyte.adt.graph.util.BreadthFirstEnumerationBuilder;
  */
 public class ColoringBuilder<T>
 {
+
 	final static Logger logger = LoggerFactory.getLogger(ColoringBuilder.class);
 
 	public static <V> Map<V, Integer> colour(Graph<V> graph, int numColours)
@@ -174,4 +175,5 @@ public class ColoringBuilder<T>
 		// return false if no valid color could be found.
 		return false;
 	}
+
 }
