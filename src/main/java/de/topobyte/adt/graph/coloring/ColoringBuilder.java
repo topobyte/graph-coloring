@@ -40,30 +40,29 @@ public class ColoringBuilder<T>
 
 	final static Logger logger = LoggerFactory.getLogger(ColoringBuilder.class);
 
-	public static <V> Map<V, Integer> colour(Graph<V> graph, int numColours)
+	public static <V> Map<V, Integer> color(Graph<V> graph, int numColors)
 			throws ColoringException
 	{
 		BreadthFirstEnumerationBuilder<V> enumerationBuilder = new BreadthFirstEnumerationBuilder<>(
 				graph);
 		List<V> enumeration = enumerationBuilder.buildEnumeration();
-		return colour(graph, enumeration, numColours);
+		return color(graph, enumeration, numColors);
 	}
 
-	public static <V> Map<V, Integer> colour(Graph<V> graph,
-			List<V> enumeration, int numColours) throws ColoringException
+	public static <V> Map<V, Integer> color(Graph<V> graph, List<V> enumeration,
+			int numColors) throws ColoringException
 	{
-		return colour(graph, enumeration, numColours, Integer.MAX_VALUE);
+		return color(graph, enumeration, numColors, Integer.MAX_VALUE);
 	}
 
-	public static <V> Map<V, Integer> colour(Graph<V> graph,
-			List<V> enumeration, int numColours, int maxIterations)
-			throws ColoringException
+	public static <V> Map<V, Integer> color(Graph<V> graph, List<V> enumeration,
+			int numColors, int maxIterations) throws ColoringException
 	{
-		ColoringBuilder<V> colouring = new ColoringBuilder<>(graph);
-		colouring.setNumberOfColours(numColours);
-		boolean success = colouring.build(enumeration, maxIterations);
+		ColoringBuilder<V> coloring = new ColoringBuilder<>(graph);
+		coloring.setNumberOfColors(numColors);
+		boolean success = coloring.build(enumeration, maxIterations);
 		if (success) {
-			return colouring.getConfiguration();
+			return coloring.getConfiguration();
 		}
 		return null;
 	}
@@ -77,11 +76,11 @@ public class ColoringBuilder<T>
 		this.graph = graph;
 	}
 
-	private int numColours = 4;
+	private int numColors = 4;
 
-	private void setNumberOfColours(int numColours)
+	private void setNumberOfColors(int numColors)
 	{
-		this.numColours = numColours;
+		this.numColors = numColors;
 	}
 
 	public void build(List<T> enumeration) throws ColoringException
@@ -152,19 +151,19 @@ public class ColoringBuilder<T>
 		// for each of the colors keep a boolean whether it is
 		// already in use within the scope of the neighbors.
 		ArrayList<Boolean> bools = new ArrayList<>();
-		for (int k = 0; k <= numColours; k++) {
+		for (int k = 0; k <= numColors; k++) {
 			bools.add(false);
 		}
 		// for each neighbor, get the current configuration's
 		// color for it and save in the boolean-list.
 		Set<T> neighbours = graph.getEdgesOut(node);
 		for (T neighbour : neighbours) {
-			int colour = configuration.get(neighbour);
-			bools.set(colour, true);
+			int color = configuration.get(neighbour);
+			bools.set(color, true);
 		}
 		// now find the first color thats higher than
 		// the current one and not in use by any of the neighbors.
-		for (int k = current + 1; k <= numColours; k++) {
+		for (int k = current + 1; k <= numColors; k++) {
 			if (!bools.get(k)) {
 				configuration.put(node, k);
 				logger.debug("chose " + i + ": " + k + "");
