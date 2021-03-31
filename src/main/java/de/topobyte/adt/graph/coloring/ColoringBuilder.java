@@ -43,7 +43,7 @@ public class ColoringBuilder<T>
 	public static <V> Map<V, Integer> colour(Graph<V> graph, int numColours)
 			throws ColoringException
 	{
-		BreadthFirstEnumerationBuilder<V> enumerationBuilder = new BreadthFirstEnumerationBuilder<V>(
+		BreadthFirstEnumerationBuilder<V> enumerationBuilder = new BreadthFirstEnumerationBuilder<>(
 				graph);
 		List<V> enumeration = enumerationBuilder.buildEnumeration();
 		return colour(graph, enumeration, numColours);
@@ -59,7 +59,7 @@ public class ColoringBuilder<T>
 			List<V> enumeration, int numColours, int maxIterations)
 			throws ColoringException
 	{
-		ColoringBuilder<V> colouring = new ColoringBuilder<V>(graph);
+		ColoringBuilder<V> colouring = new ColoringBuilder<>(graph);
 		colouring.setNumberOfColours(numColours);
 		boolean success = colouring.build(enumeration, maxIterations);
 		if (success) {
@@ -95,7 +95,7 @@ public class ColoringBuilder<T>
 		this.enumeration = enumeration;
 
 		logger.debug("initializing configuration");
-		configuration = new HashMap<T, Integer>();
+		configuration = new HashMap<>();
 		initConfiguration();
 
 		logger.debug("starting iteration");
@@ -151,7 +151,7 @@ public class ColoringBuilder<T>
 		// this list is about the node's neighbors' coloring
 		// for each of the colors keep a boolean whether it is
 		// already in use within the scope of the neighbors.
-		ArrayList<Boolean> bools = new ArrayList<Boolean>();
+		ArrayList<Boolean> bools = new ArrayList<>();
 		for (int k = 0; k <= numColours; k++) {
 			bools.add(false);
 		}
