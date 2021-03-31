@@ -1,6 +1,8 @@
 # About
 
 This library provides algorithms for coloring graphs.
+It works on the abstract datatype for graphs provided by
+[topobyte/adt-graph](https://github.com/topobyte/adt-graph).
 
 # License
 
